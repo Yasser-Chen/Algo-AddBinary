@@ -8,17 +8,28 @@ var addBinary = function (a, b) {
         maxLen;
     // add leading zeros to strings
     if (a.length < b.length) {
-        for (let i = a.length; i < b.length; i++) {
-            a = `0${a}`;
+        let aArr = a.split(''); // convert string to array
+        let resultArr = [];
+        for (let i = 0; i < b.length - aArr.length; i++) {
+            resultArr.push('0'); // append leading zeros
         }
+        for (let char of aArr) {
+            resultArr.push(char); // append original characters
+        }
+        a = resultArr.join(''); // join array back to string
         maxLen = b.length;
     } else {
-        for (let i = b.length; i < a.length; i++) {
-            b = `0${b}`;
+        let bArr = b.split('');
+        let resultArr = [];
+        for (let i = 0; i < a.length - bArr.length; i++) {
+            resultArr.push('0');
         }
+        for (let char of bArr) {
+            resultArr.push(char);
+        }
+        b = resultArr.join('');
         maxLen = a.length;
     }
-
     // calculation
     let leftover = 0,
         sum = 0,
